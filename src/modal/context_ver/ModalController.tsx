@@ -1,12 +1,4 @@
-import { ReactNode } from 'react';
-
-export type ModalInfo = {
-  id: string;
-  title: string;
-  content: ReactNode;
-  accept: () => void;
-  cancel: () => void;
-};
+import ModalInfo from '../ModalInfo';
 
 export default class ModalController {
   stack: ModalInfo[];

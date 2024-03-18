@@ -1,21 +1,22 @@
-import { useContext } from 'react';
-import ModalContext from './ModalContext';
-import ModalProvider from './ModalProvider';
+import ModalContainer from './ModalContainer';
+import useModalStore from './ModalStore';
 
-export default function ModalWithContext() {
+export default function ModalWithStore() {
   return (
-    <ModalProvider>
-      <h1>Test modals implemented with useContext.</h1>
+    <>
+      <h1>Test Modals implemented with zustand store</h1>
       <TestComponent />
-    </ModalProvider>
+      <ModalContainer />
+    </>
   );
 }
 
 function TestComponent() {
-  const modalController = useContext(ModalContext);
+  const pop = useModalStore((state) => state.pop);
+  const push = useModalStore((state) => state.push);
 
   const openSimpleModal = () => {
-    modalController?.push({
+    push({
       id: crypto.randomUUID(),
       title: 'Simple Modal',
       content: (
@@ -28,16 +29,16 @@ function TestComponent() {
       ),
       accept: () => {
         window.alert('Accepted');
-        modalController.pop();
+        pop();
       },
       cancel: () => {
-        modalController.pop();
+        pop();
       },
     });
   };
 
   const openNestedModal = () => {
-    modalController?.push({
+    push({
       id: crypto.randomUUID(),
       title: 'Nested Modal',
       content: (
@@ -53,10 +54,10 @@ function TestComponent() {
       ),
       accept: () => {
         window.alert('Accepted');
-        modalController.pop();
+        pop();
       },
       cancel: () => {
-        modalController.pop();
+        pop();
       },
     });
   };

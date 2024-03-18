@@ -1,10 +1,12 @@
 import './App.css';
 import ModalWithContext from './modal/context_ver/ModalWithContext';
+import ModalWithStore from './modal/store_ver/ModalWithStore';
 
 function App() {
   return (
     <div className="App">
       <ModalWithContext />
+      <ModalWithStore />
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum nisi
         enim nobis repellendus ad. Quis ratione excepturi maxime quae illo eius
