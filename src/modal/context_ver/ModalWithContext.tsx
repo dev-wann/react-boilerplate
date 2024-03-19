@@ -6,12 +6,12 @@ export default function ModalWithContext() {
   return (
     <ModalProvider>
       <h1>Test modals implemented with useContext.</h1>
-      <TestComponent />
+      <SampleComponent />
     </ModalProvider>
   );
 }
 
-function TestComponent() {
+function SampleComponent() {
   const modalController = useContext(ModalContext);
 
   const openSimpleModal = () => {

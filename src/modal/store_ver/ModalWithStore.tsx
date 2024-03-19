@@ -5,13 +5,13 @@ export default function ModalWithStore() {
   return (
     <>
       <h1>Test Modals implemented with zustand store</h1>
-      <TestComponent />
+      <SampleComponent />
       <ModalContainer />
     </>
   );
 }
 
-function TestComponent() {
+function SampleComponent() {
   const pop = useModalStore((state) => state.pop);
   const push = useModalStore((state) => state.push);
 
