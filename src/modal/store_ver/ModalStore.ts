@@ -2,36 +2,31 @@ import { create } from 'zustand';
 import ModalInfo from '../ModalInfo';
 
 type State = {
-  stack: ModalInfo[];
+  modalInfos: ModalInfo[];
 };
 type Action = {
-  getModalInfos: () => ModalInfo[];
   pop: () => void;
   push: (info: ModalInfo) => void;
   clear: () => void;
 };
 
 const useModalStore = create<State & Action>((set, get) => ({
-  stack: [],
-
-  getModalInfos: () => {
-    return get().stack;
-  },
+  modalInfos: [],
 
   pop: () => {
-    if (get().stack.length === 1) {
+    if (get().modalInfos.length === 1) {
       document.body.classList.remove('prevent-scroll');
     }
-    set((state) => ({ stack: state.stack.slice(0, -1) }));
+    set((state) => ({ modalInfos: state.modalInfos.slice(0, -1) }));
   },
 
   push: (info: ModalInfo) => {
     document.body.classList.add('prevent-scroll');
-    set((state) => ({ stack: [...state.stack, info] }));
+    set((state) => ({ modalInfos: [...state.modalInfos, info] }));
   },
 
   clear() {
-    set(() => ({ stack: [] }));
+    set(() => ({ modalInfos: [] }));
   },
 }));
 

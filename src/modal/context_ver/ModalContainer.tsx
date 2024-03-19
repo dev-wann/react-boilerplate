@@ -4,7 +4,7 @@ import '../modal.css';
 import ModalContext from './ModalContext';
 
 export default function ModalContainer() {
-  const modalInfos = useContext(ModalContext)?.getModalInfos();
+  const modalInfos = useContext(ModalContext)?.modalInfos;
   const modalContainer = document.getElementById('modal-container');
 
   // create a parent HTML element of the ModalContainer

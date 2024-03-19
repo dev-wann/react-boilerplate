@@ -1,24 +1,20 @@
 import ModalInfo from '../ModalInfo';
 
 export default class ModalController {
-  stack: ModalInfo[];
+  modalInfos: ModalInfo[];
   triggerRerender: () => void;
 
   constructor(setFlag: React.Dispatch<React.SetStateAction<number>>) {
-    this.stack = [];
+    this.modalInfos = [];
     this.triggerRerender = () => setFlag((prev) => prev + 1);
   }
 
-  getModalInfos() {
-    return this.stack;
-  }
-
   pop() {
-    if (this.stack.length <= 0) return;
-    this.stack.pop();
+    if (this.modalInfos.length <= 0) return;
+    this.modalInfos.pop();
 
     // enable scroll when there's no modal left
-    if (this.stack.length === 0) {
+    if (this.modalInfos.length === 0) {
       document.body.classList.remove('prevent-scroll');
     }
 
@@ -27,7 +23,7 @@ export default class ModalController {
   }
 
   push(info: ModalInfo) {
-    this.stack.push(info);
+    this.modalInfos.push(info);
 
     // disable scroll
     document.body.classList.add('prevent-scroll');
@@ -37,6 +33,6 @@ export default class ModalController {
   }
 
   clear() {
-    this.stack = [];
+    this.modalInfos = [];
   }
 }

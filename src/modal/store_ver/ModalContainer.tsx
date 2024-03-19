@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import useModalStore from './ModalStore';
 
 export default function ModalContainer() {
-  const modalInfos = useModalStore((state) => state.getModalInfos());
+  const modalInfos = useModalStore((state) => state.modalInfos);
   const modalContainer = document.getElementById('modal-container');
 
   // create a parent HTML element of the ModalContainer
