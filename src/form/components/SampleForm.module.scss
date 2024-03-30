@@ -1,0 +1,19 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  & > label {
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+
+  & > button {
+    flex-grow: 1;
+  }
+}

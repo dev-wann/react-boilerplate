@@ -1,4 +1,5 @@
 import './App.css';
+import SampleForm from './form/components/SampleForm';
 import ModalWithContext from './modal/context_ver/ModalWithContext';
 import ModalWithStore from './modal/store_ver/ModalWithStore';
 
@@ -7,6 +8,7 @@ function App() {
     <div className="App">
       <ModalWithContext />
       <ModalWithStore />
+      <SampleForm />
       <ScrollPlaceholder />
     </div>
   );
