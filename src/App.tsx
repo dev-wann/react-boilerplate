@@ -7,6 +7,17 @@ function App() {
     <div className="App">
       <ModalWithContext />
       <ModalWithStore />
+      <ScrollPlaceholder />
+    </div>
+  );
+}
+
+function ScrollPlaceholder() {
+  return (
+    <div
+      style={{ marginTop: '1rem', padding: '1rem', backgroundColor: 'silver' }}
+    >
+      <h1 style={{ margin: '0' }}>Placeholder for scroll test</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum nisi
         enim nobis repellendus ad. Quis ratione excepturi maxime quae illo eius
