@@ -1,4 +1,6 @@
+import { useCallback } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import ErrorComponent from '../components/common/ErrorComponent';
 import InputComponent from '../components/common/InputComponent';
 import RadioComponent from '../components/common/RadioComponent';
 import SelectComponent from '../components/common/SelectComponent';
@@ -20,21 +22,45 @@ export default function useFormComponents(onSubmit: SubmitHandler<FormValues>) {
 
   type omitProps = 'register';
 
-  function Input(props: Omit<InputProps, omitProps>) {
-    return <InputComponent register={register} {...props} />;
-  }
+  const Input = useCallback(
+    (props: Omit<InputProps, omitProps>) => (
+      <>
+        <InputComponent register={register} {...props} />
+        <ErrorComponent error={errors[props.name]} />
+      </>
+    ),
+    [register, errors]
+  );
 
-  function Select(props: Omit<SelectProps, omitProps>) {
-    return <SelectComponent register={register} {...props} />;
-  }
+  const Select = useCallback(
+    (props: Omit<SelectProps, omitProps>) => (
+      <>
+        <SelectComponent register={register} {...props} />
+        <ErrorComponent error={errors[props.name]} />
+      </>
+    ),
+    [register, errors]
+  );
 
-  function TextArea(props: Omit<TextAreaProps, omitProps>) {
-    return <TextAreaComponent register={register} {...props} />;
-  }
+  const TextArea = useCallback(
+    (props: Omit<TextAreaProps, omitProps>) => (
+      <>
+        <TextAreaComponent register={register} {...props} />
+        <ErrorComponent error={errors[props.name]} />
+      </>
+    ),
+    [register, errors]
+  );
 
-  function Radio(props: Omit<RadioProps, omitProps>) {
-    return <RadioComponent register={register} {...props} />;
-  }
+  const Radio = useCallback(
+    (props: Omit<RadioProps, omitProps>) => (
+      <>
+        <RadioComponent register={register} {...props} />
+        <ErrorComponent error={errors[props.name]} />
+      </>
+    ),
+    [register, errors]
+  );
 
   return { Input, Select, TextArea, Radio, onSubmit: handleSubmit(onSubmit) };
 }

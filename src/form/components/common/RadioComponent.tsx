@@ -13,7 +13,7 @@ export default function RadioComponent({
       {label ? <label htmlFor={name}>{label}</label> : <></>}
       <div>
         {optionList.map(([option, optionLabel]) => (
-          <>
+          <span key={option}>
             <input
               {...register(name, { required })}
               type="radio"
@@ -21,7 +21,7 @@ export default function RadioComponent({
               id={option}
             />
             <label htmlFor={option}>{optionLabel}</label>
-          </>
+          </span>
         ))}
       </div>
     </>

@@ -4,9 +4,9 @@ import { FormValues } from '../types/FormTypes';
 import styles from './SampleForm.module.scss';
 
 export default function SampleForm() {
-  const showData: SubmitHandler<FormValues> = (data) => window.alert(data);
+  const logData: SubmitHandler<FormValues> = (data) => console.log(data);
   const { Input, Select, TextArea, Radio, onSubmit } =
-    useFormComponents(showData);
+    useFormComponents(logData);
 
   return (
     <>
