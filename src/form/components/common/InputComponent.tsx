@@ -5,15 +5,26 @@ export default function InputComponent({
   register,
   name,
   label,
+  validator,
   type = 'text',
-  required = false,
 }: InputProps) {
   return (
     <>
-      {label ? <label htmlFor={name}>{label}</label> : <></>}
+      {label ? (
+        <label
+          className={`${styles.label} ${
+            validator?.required ? styles.required : ''
+          }`}
+          htmlFor={name}
+        >
+          {label}
+        </label>
+      ) : (
+        <></>
+      )}
       <input
         className={styles.input}
-        {...register(name, { required })}
+        {...register(name, validator)}
         id={name}
         name={name}
         type={type}

@@ -1,4 +1,4 @@
-import { UseFormRegister } from 'react-hook-form';
+import { RegisterOptions, UseFormRegister } from 'react-hook-form';
 
 export type FormValues = {
   id: string;
@@ -19,8 +19,8 @@ export type InputProps = {
   register: RegisterType;
   name: keyof FormValues;
   label?: string;
+  validator?: RegisterOptions<FormValues, keyof FormValues>;
   type?: string;
-  required?: boolean;
 };
 
 export type TextAreaProps = Omit<InputProps, 'type'>;

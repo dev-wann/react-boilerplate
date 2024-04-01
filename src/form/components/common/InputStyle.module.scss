@@ -1,5 +1,44 @@
+.label {
+  position: relative;
+  font-weight: bold;
+}
+
+.required:after {
+  content: '';
+
+  display: inline-block;
+  position: absolute;
+  width: 0.4em;
+  height: 0.4em;
+  top: 0.2em;
+  margin-left: 0.2em;
+
+  border-radius: 50%;
+  background-color: red;
+}
+
 .input[aria-invalid='true'] {
   border: 1px solid red;
+}
+
+.pw {
+  display: flex;
+  border: 1px solid gray;
+  border-radius: 2px;
+  height: 1.345rem;
+
+  & > input {
+    flex-grow: 1;
+    border: none;
+  }
+}
+
+.showBtn {
+  width: 1.4rem;
+  padding: 0.1rem;
+  border: none;
+  background: none;
+  margin: 0;
 }
 
 .errorMsg {

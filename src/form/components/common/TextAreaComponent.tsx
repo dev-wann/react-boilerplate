@@ -1,15 +1,27 @@
 import { TextAreaProps } from '../../types/FormTypes';
+import styles from './InputStyle.module.scss';
 
 export default function TextAreaComponent({
   register,
   name,
   label,
-  required = false,
+  validator,
 }: TextAreaProps) {
   return (
     <>
-      {label ? <label htmlFor={name}>{label}</label> : <></>}
-      <textarea {...register(name, { required })} id={name} name={name} />
+      {label ? (
+        <label
+          className={`${styles.label} ${
+            validator?.required ? styles.required : ''
+          }`}
+          htmlFor={name}
+        >
+          {label}
+        </label>
+      ) : (
+        <></>
+      )}
+      <textarea {...register(name, validator)} id={name} name={name} />
     </>
   );
 }

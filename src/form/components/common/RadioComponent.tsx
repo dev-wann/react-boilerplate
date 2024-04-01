@@ -1,21 +1,33 @@
 import { RadioProps } from '../../types/FormTypes';
+import styles from './InputStyle.module.scss';
 
 export default function RadioComponent({
   register,
   name,
   label,
+  validator,
   options,
-  required = false,
 }: RadioProps) {
   const optionList = Object.entries(options);
   return (
     <>
-      {label ? <label htmlFor={name}>{label}</label> : <></>}
+      {label ? (
+        <label
+          className={`${styles.label} ${
+            validator?.required ? styles.required : ''
+          }`}
+          htmlFor={name}
+        >
+          {label}
+        </label>
+      ) : (
+        <></>
+      )}
       <div>
         {optionList.map(([option, optionLabel]) => (
           <span key={option}>
             <input
-              {...register(name, { required })}
+              {...register(name, validator)}
               type="radio"
               value={option}
               id={option}

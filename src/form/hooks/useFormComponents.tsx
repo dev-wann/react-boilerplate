@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import ErrorComponent from '../components/common/ErrorComponent';
 import InputComponent from '../components/common/InputComponent';
+import PasswordInputComponent from '../components/common/PasswordInputComponent';
 import RadioComponent from '../components/common/RadioComponent';
 import SelectComponent from '../components/common/SelectComponent';
 import TextAreaComponent from '../components/common/TextAreaComponent';
@@ -18,7 +19,7 @@ export default function useFormComponents(onSubmit: SubmitHandler<FormValues>) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<FormValues>({ mode: 'onTouched' });
 
   type omitProps = 'register';
 
@@ -27,6 +28,29 @@ export default function useFormComponents(onSubmit: SubmitHandler<FormValues>) {
       <>
         <InputComponent register={register} {...props} />
         <ErrorComponent error={errors[props.name]} />
+      </>
+    ),
+    [register, errors]
+  );
+
+  const PasswordInput = useCallback(
+    (props: Omit<InputProps, omitProps>) => (
+      <>
+        <PasswordInputComponent register={register} {...props} />
+        <ErrorComponent error={errors[props.name]} />
+        <PasswordInputComponent
+          register={register}
+          name="confirm"
+          label="Confirm Password"
+          validator={{
+            required: true,
+            validate: (val) =>
+              val ===
+                (document?.getElementById(props.name) as HTMLInputElement)
+                  ?.value || 'Must be same with the password.',
+          }}
+        />
+        <ErrorComponent error={errors['confirm']} />
       </>
     ),
     [register, errors]
@@ -62,5 +86,12 @@ export default function useFormComponents(onSubmit: SubmitHandler<FormValues>) {
     [register, errors]
   );
 
-  return { Input, Select, TextArea, Radio, onSubmit: handleSubmit(onSubmit) };
+  return {
+    Input,
+    PasswordInput,
+    Select,
+    TextArea,
+    Radio,
+    onSubmit: handleSubmit(onSubmit),
+  };
 }
