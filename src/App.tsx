@@ -7,8 +7,11 @@ function App() {
   return (
     <div className="App">
       <ModalWithContext />
+      <hr />
       <ModalWithStore />
+      <hr />
       <SampleForm />
+      <hr />
       <ScrollPlaceholder />
     </div>
   );
