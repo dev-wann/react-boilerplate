@@ -1,5 +1,11 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FormValues } from '../types/FormTypes';
+import {
+  emailValidator,
+  idValidator,
+  phoneValidator,
+  pwValidator,
+} from '../utils/validators';
 import styles from './SampleForm.module.scss';
 import InputComponent from './common/InputComponent';
 import PasswordInputComponent from './common/PasswordInputComponent';
@@ -30,17 +36,7 @@ export default function SampleForm() {
           error={errors['id']}
           name="id"
           label="ID"
-          validator={{
-            required: true,
-            minLength: {
-              value: 5,
-              message: 'ID should be at least 5 characters long.',
-            },
-            maxLength: {
-              value: 20,
-              message: 'ID should be up to 20 charaters.',
-            },
-          }}
+          validator={idValidator}
         />
 
         {/* password */}
@@ -49,31 +45,7 @@ export default function SampleForm() {
           errors={errors}
           name="password"
           label="Password"
-          validator={{
-            required: true,
-            minLength: {
-              value: 5,
-              message: 'Password should be at least 5 characters long.',
-            },
-            maxLength: {
-              value: 20,
-              message: 'Password should be up to 20 charaters.',
-            },
-            validate: {
-              lowerCase: (val) =>
-                (typeof val === 'string' && /[a-z]/.test(val)) ||
-                'Must contain lowercase character.',
-              upperCase: (val) =>
-                (typeof val === 'string' && /[A-Z]/.test(val)) ||
-                'Must contain uppercase character.',
-              number: (val) =>
-                (typeof val === 'string' && /[0-9]/.test(val)) ||
-                'Must contain number.',
-              special: (val) =>
-                (typeof val === 'string' && /[!-\/:-@[-`{-~]/.test(val)) ||
-                'Must contain special character.',
-            },
-          }}
+          validator={pwValidator}
         />
 
         {/* first name */}
@@ -115,13 +87,7 @@ export default function SampleForm() {
           error={errors['email']}
           name="email"
           label="Email"
-          validator={{
-            required: true,
-            validate: (val) =>
-              (typeof val === 'string' &&
-                /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(val)) ||
-              'Invalid email adddress',
-          }}
+          validator={emailValidator}
         />
 
         {/* phone */}
@@ -130,12 +96,7 @@ export default function SampleForm() {
           error={errors['phone']}
           name="phone"
           label="Phone Number"
-          validator={{
-            required: true,
-            validate: (val) =>
-              (typeof val === 'string' && /^\+?[\d\s\-.()]+$/.test(val)) ||
-              'Invalid phone number',
-          }}
+          validator={phoneValidator}
         />
 
         {/* agreement */}
