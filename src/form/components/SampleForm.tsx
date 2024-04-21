@@ -20,8 +20,9 @@ export default function SampleForm() {
     formState: { errors },
   } = useForm<FormValues>({ mode: 'onTouched' });
 
-  const logData: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
+  const showData: SubmitHandler<FormValues> = (data) => {
+    const { confirm, ...result } = data;
+    window.alert(JSON.stringify(result, null, ' '));
   };
 
   return (
@@ -29,7 +30,7 @@ export default function SampleForm() {
       <h1>Form test</h1>
 
       {/* form */}
-      <form className={styles.form} onSubmit={handleSubmit(logData)}>
+      <form className={styles.form} onSubmit={handleSubmit(showData)}>
         {/* ID */}
         <InputComponent
           register={register}
