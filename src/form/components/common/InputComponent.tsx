@@ -30,6 +30,7 @@ export default function InputComponent({
         id={name}
         name={name}
         type={type}
+        aria-invalid={error ? true : false}
       />
       <ErrorComponent error={error} />
     </>

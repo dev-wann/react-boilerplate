@@ -23,7 +23,14 @@ export default function TextAreaComponent({
       ) : (
         <></>
       )}
-      <textarea {...register(name, validator)} id={name} name={name} />
+
+      <textarea
+        {...register(name, validator)}
+        className={styles.input}
+        id={name}
+        name={name}
+        aria-invalid={error ? true : false}
+      />
       <ErrorComponent error={error} />
     </>
   );

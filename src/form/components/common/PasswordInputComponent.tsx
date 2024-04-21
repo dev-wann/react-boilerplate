@@ -44,6 +44,7 @@ export default function PasswordInputComponent({
           id={name}
           name={name}
           type={showPW ? 'text' : 'password'}
+          aria-invalid={errors[name] ? true : false}
         />
         <button className={styles.showBtn} onClick={toggleShow}>
           <img src={showPW ? show : hide} />
@@ -75,6 +76,7 @@ export default function PasswordInputComponent({
           id={'confirm'}
           name={'confirm'}
           type={showPW ? 'text' : 'password'}
+          aria-invalid={errors['confirm'] ? true : false}
         />
         <button className={styles.showBtn} onClick={toggleShow}>
           <img src={showPW ? show : hide} />

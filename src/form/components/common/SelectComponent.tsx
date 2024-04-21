@@ -25,7 +25,12 @@ export default function SelectComponent({
       ) : (
         <></>
       )}
-      <select {...register(name, validator)} id={name}>
+      <select
+        {...register(name, validator)}
+        className={styles.input}
+        id={name}
+        aria-invalid={error ? true : false}
+      >
         <option value="">---- select ----</option>
         {optionList.map(([option, optionText]) => (
           <option value={option.toLowerCase()} key={option}>
