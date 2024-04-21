@@ -22,6 +22,12 @@ I implemented two versions of the management system, which are:
     - opening/closing modal is done by executing push()/pop() method of the ModalStore
     - example code in ModalWithStore.tsx
 
+### Form
+
+A form example implemented using 'react-hook-form' library.    
+Tried to mimic a sign up form.    
+DIR: /src/form/
+
 
 ## Contact
 Seungwan Cho  
