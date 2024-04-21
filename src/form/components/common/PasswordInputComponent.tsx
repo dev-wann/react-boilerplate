@@ -37,14 +37,15 @@ export default function PasswordInputComponent({
         {label}
       </label>
 
-      <div className={styles.pw}>
+      <div
+        className={`${styles.pw} ${styles.input}`}
+        aria-invalid={errors['confirm'] ? true : false}
+      >
         <input
-          className={styles.input}
           {...register(name, validator)}
           id={name}
           name={name}
           type={showPW ? 'text' : 'password'}
-          aria-invalid={errors[name] ? true : false}
         />
         <button className={styles.showBtn} onClick={toggleShow}>
           <img src={showPW ? show : hide} />
@@ -63,9 +64,11 @@ export default function PasswordInputComponent({
         {'Confirm Password'}
       </label>
 
-      <div className={styles.pw}>
+      <div
+        className={`${styles.pw} ${styles.input}`}
+        aria-invalid={errors['confirm'] ? true : false}
+      >
         <input
-          className={styles.input}
           {...register('confirm', {
             required: true,
             validate: (val) =>
@@ -76,7 +79,6 @@ export default function PasswordInputComponent({
           id={'confirm'}
           name={'confirm'}
           type={showPW ? 'text' : 'password'}
-          aria-invalid={errors['confirm'] ? true : false}
         />
         <button className={styles.showBtn} onClick={toggleShow}>
           <img src={showPW ? show : hide} />
