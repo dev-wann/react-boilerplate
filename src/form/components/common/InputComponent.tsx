@@ -1,8 +1,10 @@
 import { InputProps } from '../../types/FormTypes';
+import ErrorComponent from './ErrorComponent';
 import styles from './InputStyle.module.scss';
 
 export default function InputComponent({
   register,
+  error,
   name,
   label,
   validator,
@@ -29,6 +31,7 @@ export default function InputComponent({
         name={name}
         type={type}
       />
+      <ErrorComponent error={error} />
     </>
   );
 }

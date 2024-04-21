@@ -1,8 +1,10 @@
 import { RadioProps } from '../../types/FormTypes';
+import ErrorComponent from './ErrorComponent';
 import styles from './InputStyle.module.scss';
 
 export default function RadioComponent({
   register,
+  error,
   name,
   label,
   validator,
@@ -36,6 +38,7 @@ export default function RadioComponent({
           </span>
         ))}
       </div>
+      <ErrorComponent error={error} />
     </>
   );
 }

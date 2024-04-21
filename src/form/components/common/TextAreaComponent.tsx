@@ -1,8 +1,10 @@
 import { TextAreaProps } from '../../types/FormTypes';
+import ErrorComponent from './ErrorComponent';
 import styles from './InputStyle.module.scss';
 
 export default function TextAreaComponent({
   register,
+  error,
   name,
   label,
   validator,
@@ -22,6 +24,7 @@ export default function TextAreaComponent({
         <></>
       )}
       <textarea {...register(name, validator)} id={name} name={name} />
+      <ErrorComponent error={error} />
     </>
   );
 }

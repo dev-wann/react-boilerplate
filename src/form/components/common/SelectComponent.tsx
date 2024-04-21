@@ -1,8 +1,10 @@
 import { SelectProps } from '../../types/FormTypes';
+import ErrorComponent from './ErrorComponent';
 import styles from './InputStyle.module.scss';
 
-export default function Select({
+export default function SelectComponent({
   register,
+  error,
   name,
   label,
   validator,
@@ -31,6 +33,7 @@ export default function Select({
           </option>
         ))}
       </select>
+      <ErrorComponent error={error} />
     </>
   );
 }

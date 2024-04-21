@@ -1,23 +1,33 @@
-import { SubmitHandler } from 'react-hook-form';
-import useFormComponents from '../hooks/useFormComponents';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { FormValues } from '../types/FormTypes';
 import styles from './SampleForm.module.scss';
+import InputComponent from './common/InputComponent';
+import PasswordInputComponent from './common/PasswordInputComponent';
+import RadioComponent from './common/RadioComponent';
+import SelectComponent from './common/SelectComponent';
+import TextAreaComponent from './common/TextAreaComponent';
 
 export default function SampleForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>({ mode: 'onTouched' });
+
   const logData: SubmitHandler<FormValues> = (data) => {
     console.log(data);
   };
-  const { Input, PasswordInput, Select, TextArea, Radio, onSubmit } =
-    useFormComponents(logData);
 
   return (
     <>
       <h1>Form test</h1>
 
       {/* form */}
-      <form className={styles.form} onSubmit={onSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit(logData)}>
         {/* ID */}
-        <Input
+        <InputComponent
+          register={register}
+          error={errors['id']}
           name="id"
           label="ID"
           validator={{
@@ -34,7 +44,9 @@ export default function SampleForm() {
         />
 
         {/* password */}
-        <PasswordInput
+        <PasswordInputComponent
+          register={register}
+          errors={errors}
           name="password"
           label="Password"
           validator={{
@@ -65,21 +77,27 @@ export default function SampleForm() {
         />
 
         {/* first name */}
-        <Input
+        <InputComponent
+          register={register}
+          error={errors['firstName']}
           name="firstName"
           label="First Name"
           validator={{ required: true }}
         />
 
         {/* last name */}
-        <Input
+        <InputComponent
+          register={register}
+          error={errors['lastName']}
           name="lastName"
           label="Last Name"
           validator={{ required: true }}
         />
 
         {/* gender */}
-        <Select
+        <SelectComponent
+          register={register}
+          error={errors['gender']}
           name="gender"
           label="Gender"
           validator={{ required: true }}
@@ -92,7 +110,9 @@ export default function SampleForm() {
         />
 
         {/* email */}
-        <Input
+        <InputComponent
+          register={register}
+          error={errors['email']}
           name="email"
           label="Email"
           validator={{
@@ -105,7 +125,9 @@ export default function SampleForm() {
         />
 
         {/* phone */}
-        <Input
+        <InputComponent
+          register={register}
+          error={errors['phone']}
           name="phone"
           label="Phone Number"
           validator={{
@@ -117,7 +139,9 @@ export default function SampleForm() {
         />
 
         {/* agreement */}
-        <Radio
+        <RadioComponent
+          register={register}
+          error={errors['agreement']}
           name="agreement"
           label="Do you agree?"
           validator={{ required: true }}
@@ -125,7 +149,7 @@ export default function SampleForm() {
         />
 
         {/* message */}
-        <TextArea name="message" label="Message" />
+        <TextAreaComponent register={register} name="message" label="Message" />
 
         {/* buttons */}
         <div className={styles.buttons}>
